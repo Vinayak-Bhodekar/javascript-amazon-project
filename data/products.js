@@ -656,5 +656,21 @@ const product = [
       "apparel",
       "mens"
     ]
+  },
+  {
+    id: "bc2827e9-5313-403f-b7cf-57fde054a955",
+    image: "images/products/umbrella.jpg",
+    name: "Umbrella",
+    rating: {
+      stars: 4.0,
+      count: 720
+    },
+    priceCents: 740,
+    keywords: [
+      "sweaters",
+      "hoodies",
+      "apparel",
+      "mens"
+    ]
   }
 ];

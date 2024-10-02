@@ -40,7 +40,7 @@ product.forEach((value)=>{
 
           <div class="product-spacer"></div>
 
-          <div class="added-to-cart">
+          <div class="added-to-cart add-opacity-${value.id}">
             <img src="images/icons/checkmark.png">
             Added
           </div>
@@ -52,9 +52,12 @@ product.forEach((value)=>{
   `;
 });
 document.querySelector('.products-grid').innerHTML = producthtml;
+let istimerestart;
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
   button.addEventListener('click',()=>{
-    const productId = button.dataset.productId;
+
+    const {productId} = button.dataset;
+
     let matchingItem;
 
     cart.forEach((item)=>{
@@ -82,5 +85,20 @@ document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
     });
 
     document.querySelector('.cart-quantity').innerHTML = cartquantity;
+
+    const addedmessage = document.querySelector(`.add-opacity-${productId}`);
+
+    addedmessage.classList.add('add-opacity1');
+
+      if(istimerestart){
+        clearTimeout(istimerestart);
+      }
+      const timeinterval = setTimeout(() => {
+        addedmessage.classList.remove('add-opacity1');
+      },2000);
+
+      istimerestart = timeinterval; 
+    
+
   });
 });
