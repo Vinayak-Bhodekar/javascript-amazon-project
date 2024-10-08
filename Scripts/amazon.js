@@ -1,4 +1,4 @@
-import {cart, addtocart} from '../data/cart.js';
+import {cart, addtocart,update_checkout} from '../data/cart.js';
 import { product } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 let producthtml = '';
@@ -54,7 +54,7 @@ product.forEach((value)=>{
         </div>
   `;
 });
-
+let istimerestart;
 function udatecartquantity(productId){
   let cartquantity = 0;
     cart.forEach((item)=>{
@@ -62,6 +62,8 @@ function udatecartquantity(productId){
     });
 
     document.querySelector('.cart-quantity').innerHTML = cartquantity;
+
+    update_checkout("update-cart-quantity");
 
     const addedmessage = document.querySelector(`.add-opacity-${productId}`);
 
@@ -77,9 +79,8 @@ function udatecartquantity(productId){
       istimerestart = timeinterval; 
     
 }
-
 document.querySelector('.products-grid').innerHTML = producthtml;
-let istimerestart;
+
 document.querySelectorAll('.js-add-to-cart').forEach((button)=>{
   button.addEventListener('click',()=>{
 

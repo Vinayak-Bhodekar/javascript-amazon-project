@@ -209,3 +209,20 @@
   margin-top: 11px;
   margin-bottom: 15px;
 }
+
+.quantity-input{
+  width: 30px;
+  display: none;
+}
+.save-quantity-link {
+  display: none;
+}
+
+.cart-item-container.is-editing-quantity .quantity-input,
+.cart-item-container.is-editing-quantity .save-quantity-link {
+  display: inline-block;
+}
+
+.cart-item-container.is-editing-quantity .js-update-quantity-link {
+  display: none;
+}
