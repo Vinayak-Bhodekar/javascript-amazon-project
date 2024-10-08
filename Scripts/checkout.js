@@ -1,4 +1,4 @@
-import {cart,removefromcart, update_checkout,updateQuantity} from '../data/cart.js';
+import {cart,removefromcart, update_checkout,updateQuantity,updateDelieveryOption} from '../data/cart.js';
 import {product} from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
@@ -86,7 +86,9 @@ function delieveryoptionHTML(matchingproduct,cartitem){
     const ischecked = delieryoption.id === cartitem.delieveryOptionId;
     
     html += `
-        <div class="delivery-option">
+        <div class="delivery-option js-delivery-option"
+        data-product-id = ${matchingproduct.id}
+        data-delievery-option-id = ${delieryoption.id}>
             <input type="radio" ${ischecked ? 'checked':''}
               class="delivery-option-input"
               name="delivery-option-${matchingproduct.id}">
@@ -146,3 +148,13 @@ function update_temp(link){
     const newquantity = document.querySelector(`.quantity-input-${productId}`);
     updateQuantity(newquantity.dataset.productId,Number(newquantity.value));
 }
+
+document.querySelectorAll(".js-delivery-option").forEach((option) => {
+  option.addEventListener('click',() => {
+    const {productId , delieveryOptionId} = option.dataset;
+    console.log('Product ID:', productId);
+    console.log('Delivery Option ID:', delieveryOptionId);
+
+    updateDelieveryOption(productId , delieveryOptionId);
+  });
+});
