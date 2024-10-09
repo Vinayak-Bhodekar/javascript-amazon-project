@@ -80,6 +80,7 @@ export function updateQuantity(productID, newQuantity){
     });
   }
   
+  
 }
 
 export function updateDelieveryOption(productId,delieveryOptionIds){
