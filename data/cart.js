@@ -75,7 +75,6 @@ export function updateQuantity(productID, newQuantity){
         item.quantity = newQuantity;
         update_checkout("check-out");
         document.querySelector(`.js-quantity-label-${productID}`).innerHTML = newQuantity;
-        console.log(productID);
         savetomemory();
       }
     });
