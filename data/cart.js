@@ -1,3 +1,5 @@
+import { renderOrderSummary } from "../Scripts/Checkouts/ordersummary.js";
+
 export let cart = JSON.parse(localStorage.getItem('cart'));
 if(!cart){
   cart = [{
@@ -74,7 +76,7 @@ export function updateQuantity(productID, newQuantity){
       if(item.productId === productID){
         item.quantity = newQuantity;
         update_checkout("check-out");
-        document.querySelector(`.js-quantity-label-${productID}`).innerHTML = newQuantity;
+        renderOrderSummary();
         savetomemory();
       }
     });

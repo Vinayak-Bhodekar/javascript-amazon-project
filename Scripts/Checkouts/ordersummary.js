@@ -1,8 +1,10 @@
 import {cart,removefromcart, update_checkout,updateQuantity,updateDelieveryOption} from '../../data/cart.js';
 import {product,getproduct} from '../../data/products.js';
 import { formatCurrency } from '../utils/money.js';
-import { hello } from 'https://unpkg.com/supersimpledev@1.0.1/hello.esm.js';
-import { delieveryOptions , getDelieveryOption} from '../../data/delieveryOptions.js';
+import { delieveryOptions , getDelieveryOption, calculateDeliveryDate} from '../../data/delieveryOptions.js';
+import { renderpaymentsummary } from './paymentsummary.js';
+import { renderCheckoutHeader } from './CheckoutHeader.js';
+
 
 
 export function renderOrderSummary(){
@@ -19,18 +21,16 @@ let cartSummaryHTML = '';
     
     let delieveryoptionss = getDelieveryOption(delieryoptionId);
     
-
     
-    const today = dayjs();
-    const deliverydate = today.add(delieveryoptionss.delieveryDays,'days');
-    const datestring = deliverydate.format('dddd, MMMM D');
+    
+    
 
 
     
     cartSummaryHTML += `
       <div class="cart-item-container js-cart-item-container-${matchingproduct.id}">
         <div class="delivery-date">
-          Delivery date: ${datestring}
+          Delivery date: ${calculateDeliveryDate(delieveryoptionss)}
         </div>
 
         <div class="cart-item-details-grid">
@@ -90,7 +90,7 @@ let cartSummaryHTML = '';
                 name="delivery-option-${matchingproduct.id}">
               <div>
                 <div class="delivery-option-date">
-                ${datestring}
+                ${calculateDeliveryDate(delieryoption)}
                 </div>
                 <div class="delivery-option-price">
                 ${pricestring} - Shipping
@@ -108,8 +108,10 @@ let cartSummaryHTML = '';
     link.addEventListener('click',() => {
       const productId = link.dataset.productId; 
       removefromcart(productId);
-      document.querySelector(`.js-cart-item-container-${productId}`).remove();
       update_checkout("check-out");
+      renderCheckoutHeader();
+      renderOrderSummary();
+      renderpaymentsummary();
     });
   });
 
@@ -152,7 +154,6 @@ let cartSummaryHTML = '';
       renderOrderSummary();
     });
   });
-  console.log(cart);
 }
 
 renderOrderSummary();
