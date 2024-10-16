@@ -1,8 +1,6 @@
-import { renderOrderSummary } from "../Scripts/Checkouts/ordersummary.js";
 
-export let cart = JSON.parse(localStorage.getItem('cart'));
-if(!cart){
-  cart = [{
+
+export let cart = JSON.parse(localStorage.getItem('cart')) || [{
     productId: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     quantity: 2,
     delieveryOptionId: '1'
@@ -12,7 +10,7 @@ if(!cart){
     quantity: 1,
     delieveryOptionId: '1'
   }];
-}
+
 
 
 
