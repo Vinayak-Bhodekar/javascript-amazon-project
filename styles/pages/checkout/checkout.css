@@ -216,6 +216,8 @@
 }
 .save-quantity-link {
   display: none;
+  cursor: pointer;
+  color: rgb(1, 124, 182);
 }
 
 .cart-item-container.is-editing-quantity .quantity-input,
