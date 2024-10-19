@@ -16,14 +16,14 @@ product.forEach((value)=>{
 
           <div class="product-rating-container">
             <img class="product-rating-stars"
-              src="images/ratings/rating-${(value.rating.stars)*10}.png">
+              src="${value.getStar()}">
             <div class="product-rating-count link-primary">
-              ${value.rating.count}
+              ${value.getRate()}
             </div>
           </div>
 
           <div class="product-price">
-            $${formatCurrency(value.priceCents)}
+            ${value.getPriceCents()}
           </div>
 
           <div class="product-quantity-container">
@@ -53,7 +53,6 @@ product.forEach((value)=>{
           </button>
         </div>
   `;
-  console.log(producthtml);
 });
 let istimerestart;
 function udatecartquantity(productId){
