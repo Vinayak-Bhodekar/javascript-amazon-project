@@ -53,6 +53,7 @@ product.forEach((value)=>{
           </button>
         </div>
   `;
+  console.log(producthtml);
 });
 let istimerestart;
 function udatecartquantity(productId){

@@ -125,4 +125,3 @@ function deliveryOptionsHTML(matchingProduct, cartItem) {
 
   return html;
 }
-console.log(cart);
