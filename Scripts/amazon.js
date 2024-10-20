@@ -41,6 +41,8 @@ product.forEach((value)=>{
             </select>
           </div>
 
+          ${value.extraInfoHTML()}
+
           <div class="product-spacer"></div>
 
           <div class="added-to-cart add-opacity-${value.id}">
