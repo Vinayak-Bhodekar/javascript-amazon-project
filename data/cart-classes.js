@@ -123,6 +123,3 @@ class Cart  {
 
 const cart = new Cart();
 const bussinessCart = new Cart();
-
-console.log(cart);
-console.log(bussinessCart);
