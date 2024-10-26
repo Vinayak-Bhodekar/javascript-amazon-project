@@ -4,6 +4,12 @@ import {renderCheckoutHeader} from './Checkouts/CheckoutHeader.js'
 //import '../data/car.js';
 //import '../data/cart-classes.js';
 import '../data/backend-practice.js';
-renderCheckoutHeader();
-renderpaymentsummary();
-renderOrderSummary();
+import { loadProducts } from '../data/products.js';
+
+
+loadProducts(() => {
+  renderCheckoutHeader();
+  renderpaymentsummary();
+  renderOrderSummary();
+});
+
