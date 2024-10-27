@@ -26,6 +26,28 @@ import { loadCart } from '../data/cart.js';
 });
 */
 
+async function loadPage() {
+  console.log('LOAd page');
+  await loadProductsFetch();
+
+  await new Promise((resolve) => {
+    loadCart(() => {
+      resolve('value2');
+    });
+  });
+
+  renderCheckoutHeader();
+  renderpaymentsummary();
+  renderOrderSummary();
+
+
+
+  return "valueeeeee123";
+}
+loadPage().then((value) => {
+  console.log('start next step',value);
+});
+/*
 Promise.all([
   loadProductsFetch(),
   new Promise((resolve) => {
