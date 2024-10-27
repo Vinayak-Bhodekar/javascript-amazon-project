@@ -4,10 +4,10 @@ import {renderCheckoutHeader} from './Checkouts/CheckoutHeader.js'
 //import '../data/car.js';
 //import '../data/cart-classes.js';
 //import '../data/backend-practice.js';
-import { loadProducts } from '../data/products.js';
+import { loadProducts, loadProductsFetch} from '../data/products.js';
 import { loadCart } from '../data/cart.js';
 
-Promise.all([
+/*Promise.all([
   new Promise((resolve) => {
     loadProducts(() => {
       resolve('Values1');
@@ -24,18 +24,32 @@ Promise.all([
   renderpaymentsummary();
   renderOrderSummary();
 });
+*/
 
+Promise.all([
+  loadProductsFetch(),
+  new Promise((resolve) => {
+    loadCart(() => {
+      resolve('value2');
+    });
+  })
+]).then(() => {
+  renderCheckoutHeader();
+  renderpaymentsummary();
+  renderOrderSummary();
+});
+/*
 new Promise((resolve) => {
   loadProducts(() => {
-    resolve();
+    resolve('value1');
   });
-}).then((values) => {
+}).then((value) => {
   return new Promise((resolve) => {
     loadCart(() => {
-      resolve();
+      resolve('value2');
     });
   });
-}).then(() => {
+}).then((value) => {
   renderCheckoutHeader();
   renderpaymentsummary();
   renderOrderSummary();
