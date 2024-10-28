@@ -27,14 +27,21 @@ import { loadCart } from '../data/cart.js';
 */
 
 async function loadPage() {
-  console.log('LOAd page');
-  await loadProductsFetch();
+  try {
+    //throw 'error123';
+    await loadProductsFetch();
 
-  await new Promise((resolve) => {
-    loadCart(() => {
-      resolve('value2');
+    await new Promise((resolve,reject) => {
+      loadCart(() => {
+        //reject('error1234');
+        resolve('value2');
     });
   });
+  } 
+  catch(error) {
+    console.log('Unexpected error. Please try again',error);
+  }
+  
 
   renderCheckoutHeader();
   renderpaymentsummary();
