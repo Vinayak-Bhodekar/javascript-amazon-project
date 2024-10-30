@@ -3,7 +3,7 @@ import { product, getproduct } from '../data/products.js';
 import { formatCurrency } from './utils/money.js';
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 import { delieveryOptions, getDelieveryOption } from '../data/delieveryOptions.js';
-import { renderpaymentsummary } from './Checkouts/paymentSummary.js';
+import { renderpaymentsummary } from './Checkouts/paymentsummary.js';
 import { renderCheckoutHeader } from './Checkouts/CheckoutHeader.js';
 
 export function renderOrderSummary() {
