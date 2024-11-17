@@ -57,23 +57,29 @@ export function renderpaymentsummary (){
   document.querySelector(".js-payment-summary").innerHTML = paymentsummaryHTML;
 
 
-  document.querySelector('.js-place-order').addEventListener('click', async () => {
-    try{
-      const response = await fetch("https://supersimplebackend.dev/orders", {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          cart : cart
-        })
-      })
-      const orders  = await response.json();
-      addToOrder(orders);
-    }
-    catch(error){
-      console.log("Unexpected error. Please try agin later");
-    }
+  document.querySelector('.js-place-order').addEventListener('click',async () => {
+    await cartTOorder(cart);
     window.location.href = 'orders.html';
   });
+}
+
+export async function cartTOorder(cart) {
+  try{
+    const response = await fetch("https://supersimplebackend.dev/orders", {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        cart : cart
+      })
+    })
+    const newOrder  = await response.json();
+    console.log("Order response from backend: ",newOrder);
+    addToOrder(newOrder);
+    
+  }
+  catch(error){
+    console.log("Unexpected error. Please try agin later",error);
+  }
 }

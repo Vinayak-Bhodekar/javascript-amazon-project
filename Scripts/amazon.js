@@ -6,7 +6,28 @@ loadProducts(renderProductGrid);
 function renderProductGrid() {
 
   let producthtml = '';
-  product.forEach((value)=>{
+
+  let url = new URL(window.location.href);
+  let search = url.searchParams.get('search');
+  let filterProduct = product;
+  if(search){
+    filterProduct = product.filter(item => {
+      let matchingKeyword = false;
+      item.keywords.forEach(keyword => {
+        if(keyword.toLowerCase().includes(search.toLowerCase())){
+          matchingKeyword = true;
+        }
+      });
+      return matchingKeyword || item.name.toLowerCase().includes(search.toLowerCase());
+    });
+  }
+
+  console.log(filterProduct);
+  
+  
+
+
+  filterProduct.forEach((value)=>{
     producthtml += `
       <div class="product-container">
             <div class="product-image-container">
@@ -97,3 +118,11 @@ function renderProductGrid() {
     });
   });
 }
+document.querySelector(".js-search-button").addEventListener('click',() => {
+  let search = document.querySelector(".js-search-bar").value;
+  window.location.href = `amazon.html?search=${search}`;
+});
+
+/*let string1 = 'Vinayak';
+let string2 = 'Vin';
+console.log(string1.includes(string2));*/

@@ -112,3 +112,13 @@ export function loadCart (fun){
   xhr.send();
   console.log('hollo loadcart');
 }
+
+export function addtocartOrder (productId) {
+  const quantity = 1;
+  cart.push({
+    productId,
+    quantity,
+    delieveryOptionId: 1
+  });
+  savetomemory();
+}

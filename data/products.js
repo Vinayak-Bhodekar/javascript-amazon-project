@@ -2,7 +2,6 @@ import { formatCurrency } from "../Scripts/utils/money.js";
 
 export function getproduct(productID){
   let matchingproduct;
-
   product.forEach((value) => {
     if(value.id === productID){
       matchingproduct = value;
@@ -23,6 +22,7 @@ class Product {
     this.name = productDetail.name;
     this.rating = productDetail.rating;
     this.priceCents = productDetail.priceCents;
+    this.keywords = productDetail.keywords;
   }
 
   getStar() {
@@ -96,6 +96,7 @@ loadProductsFetch().then(() => {
 
 export let product = [];
 export function loadProducts (fun){
+  console.log("hii");
   const xhr = new XMLHttpRequest();
   xhr.addEventListener('load', () => {
     product = (JSON.parse(xhr.response)).map((productDetail) => {
